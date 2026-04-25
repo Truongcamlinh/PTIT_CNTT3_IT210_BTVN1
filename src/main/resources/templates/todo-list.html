@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách công việc</title>
+</head>
+<body>
+<h1>Danh sách công việc</h1>
+
+<a th:href="@{/todos/new}">Thêm công việc mới</a>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nội dung</th>
+    <th>Hạn hoàn thành</th>
+    <th>Trạng thái</th>
+    <th>Ưu tiên</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:if="${#lists.isEmpty(todos)}">
+    <td colspan="5">Chưa có công việc nào.</td>
+  </tr>
+  <tr th:each="todo : ${todos}">
+    <td th:text="${todo.id}"></td>
+    <td th:text="${todo.content}"></td>
+    <td th:text="${todo.dueDate}"></td>
+    <td th:text="${todo.status}"></td>
+    <td th:text="${todo.priority}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

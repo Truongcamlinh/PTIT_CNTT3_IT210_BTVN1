@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm công việc</title>
+</head>
+<body>
+<h1>Thêm công việc</h1>
+
+<form th:action="@{/todos}" th:object="${todo}" method="post">
+  <div>
+    <label for="content">Nội dung</label>
+    <input id="content" type="text" th:field="*{content}">
+    <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
+  </div>
+
+  <div>
+    <label for="dueDate">Ngày hết hạn</label>
+    <input id="dueDate" type="date" th:field="*{dueDate}">
+    <div th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></div>
+  </div>
+
+  <div>
+    <label for="status">Trạng thái</label>
+    <select id="status" th:field="*{status}">
+      <option th:each="s : ${T(com.holiday.ex01.model.TodoStatus).values()}"
+              th:value="${s}"
+              th:text="${s}">
+      </option>
+    </select>
+    <div th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+  </div>
+
+  <div>
+    <label for="priority">Ưu tiên</label>
+    <select id="priority" th:field="*{priority}">
+      <option th:each="p : ${T(com.holiday.ex01.model.TodoPriority).values()}"
+              th:value="${p}"
+              th:text="${p}">
+      </option>
+    </select>
+    <div th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></div>
+  </div>
+
+  <button type="submit">Lưu</button>
+</form>
+
+<p><a th:href="@{/}">Quay lại danh sách</a></p>
+</body>
+</html>
+
