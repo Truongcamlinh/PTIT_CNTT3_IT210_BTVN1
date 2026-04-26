@@ -7,6 +7,8 @@
 <body>
 <h1>Danh sách công việc</h1>
 
+<p th:if="${message}" th:text="${message}" style="color: green;"></p>
+
 <a th:href="@{/todos/new}">Thêm công việc mới</a>
 
 <table border="1" cellpadding="8" cellspacing="0">
@@ -17,11 +19,12 @@
     <th>Hạn hoàn thành</th>
     <th>Trạng thái</th>
     <th>Ưu tiên</th>
+    <th>Hành động</th>
   </tr>
   </thead>
   <tbody>
   <tr th:if="${#lists.isEmpty(todos)}">
-    <td colspan="5">Chưa có công việc nào.</td>
+    <td colspan="6">Chưa có công việc nào.</td>
   </tr>
   <tr th:each="todo : ${todos}">
     <td th:text="${todo.id}"></td>
@@ -29,6 +32,12 @@
     <td th:text="${todo.dueDate}"></td>
     <td th:text="${todo.status}"></td>
     <td th:text="${todo.priority}"></td>
+    <td>
+      <a th:href="@{/todos/edit/{id}(id=${todo.id})}">Sửa</a>
+      |
+      <a th:href="@{/todos/delete/{id}(id=${todo.id})}"
+         onclick="return confirm('Bạn có chắc muốn thêm công việc này không?')">Xoá</a>
+    </td>
   </tr>
   </tbody>
 </table>

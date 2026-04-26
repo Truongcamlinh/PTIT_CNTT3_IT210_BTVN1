@@ -2,12 +2,14 @@
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Thêm công việc</title>
+  <title th:text="${todo.id != null} ? 'Sủa công việc' : 'Thêm công việc'">Todo form</title>
 </head>
 <body>
-<h1>Thêm công việc</h1>
+<h1 th:text="${todo.id != null} ? 'Sửa công việc' : 'Thêm công việc'">Todo form</h1>
 
 <form th:action="@{/todos}" th:object="${todo}" method="post">
+  <input type="hidden" th:field="*{id}">
+
   <div>
     <label for="content">Nội dung</label>
     <input id="content" type="text" th:field="*{content}">
@@ -42,10 +44,9 @@
     <div th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></div>
   </div>
 
-  <button type="submit">Lưu</button>
+  <button type="submit" th:text="${todo.id != null} ? 'Cập nhập' : 'Lưu'">Luu</button>
 </form>
 
 <p><a th:href="@{/}">Quay lại danh sách</a></p>
 </body>
 </html>
-
