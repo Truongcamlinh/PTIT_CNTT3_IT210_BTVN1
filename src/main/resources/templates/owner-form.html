@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{owner.form.title}">Owner form</title>
+</head>
+<body>
+<h1 th:text="#{owner.form.title}">Owner form</h1>
+
+<p>
+    <a th:href="@{/owner(lang='vi')}">VI</a> |
+    <a th:href="@{/owner(lang='en')}">EN</a>
+</p>
+
+<p th:if="${message}" th:text="#{${message}}" style="color: red;"></p>
+
+<form th:action="@{/owner}" method="post">
+    <label for="ownerName" th:text="#{owner.form.name}">Owner name</label>
+    <input id="ownerName" name="ownerName" type="text" th:value="${ownerName}">
+    <button type="submit" th:text="#{owner.form.submit}">Start</button>
+</form>
+</body>
+</html>
+

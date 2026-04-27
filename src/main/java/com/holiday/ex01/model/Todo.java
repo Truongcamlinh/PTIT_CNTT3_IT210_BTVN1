@@ -21,22 +21,22 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nội dung công việc không được để trống")
+    @NotBlank(message = "{todo.validation.content.notBlank}")
     @Column(nullable = false)
     private String content;
 
-    @NotNull(message = "Ngày hết hạn không được để trống")
-    @FutureOrPresent(message = "Ngày hết hạn phải là hôm nay hoặc trong tương lai")
+    @NotNull(message = "{todo.validation.dueDate.notNull}")
+    @FutureOrPresent(message = "{todo.validation.dueDate.futureOrPresent}")
     @Column(nullable = false)
     private LocalDate dueDate;
 
-    @NotNull(message = "Vui lòng chọn trạng thái công việc")
+    @NotNull(message = "{todo.validation.status.notNull}")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TodoStatus status = TodoStatus.PENDING;
+    private TodoStatus status;
 
-    @NotNull(message = "Vui lòng chọn độ ưu tiên công việc")
+    @NotNull(message = "{todo.validation.priority.notNull}")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TodoPriority priority = TodoPriority.MEDIUM;
+    private TodoPriority priority;
 }
